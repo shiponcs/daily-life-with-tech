@@ -708,7 +708,184 @@ But this will persist only for this session.
 
 To set a variable permanently, we have several ways to achieve this. 
 
-Set a varible in `/etc/environment`. You will see there some variables already set by the system. I my case I see the `PATH` variable. But if you're using WSL, it will work, read [here](https://askubuntu.com/questions/1046253/http-proxy-not-showing-up-with-printenv-on-wsl)
+Set a varible in `/etc/environment`. You will see there some variables already set by the system. I my case I see the `PATH` variable. But if you're using WSL, it won't work, read [here](https://askubuntu.com/questions/1046253/http-proxy-not-showing-up-with-printenv-on-wsl)
 
- 
+A common way to do is to export variables form `~/.bashrc`, 
+
+## .bashrc and .bash_profile
+
+This is always a point of confusion to me and I have to look it up every time so if that happens to you too don't worry.
+
+In your home directory, there are two files, `.bashrc` and `.bash_profile`. These are the files you need to configure and customize your bash shell. You can set things like telling Node.js you're in development mode, set up git how you want to, customize colors, set path, or really anything you can write a bash command for.
+
+`.bash_profile` is only run on login shells. That is to say, it's only run once for each time you log in to your computer. It is *not* run after that. `.bashrc` is run on every nonlogin shell, so it's run on every tab of bash you start up. Typically what you want is to run your customizations on every shell so you actually just want to modify `.bashrc` and leave `.bash_profile` alone. Actually, what I'd suggest you do is go put this in your `.bash_profile`:
+
+```bash
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
+```
+
+That way your `.bashrc` is *always* run. And after you put this in there you can just forget `.bash_profile` exists and always just modify `.bashrc`.
+
+Okay, so now to have variables that affect all shells, you just put a line in there that says:
+
+```bash
+export VARIABLE=value
+```
+
+and now it will survive when you log out. Just FYI, if you want that variable to affect *this* shell, you'll have to do a `. ~/.bashrc` so that it will reload your .bashrc. The `.` means execute in this context. You also could say `source ~/.bashrc` and that would work too.
+
+
+
+# Process
+
+In Linux, any running command is a process. There's always some process running. To find them run:
+
+```bash
+ps
+```
+
+It returns the process ran by you as a user. And, `ps aux` returns all processes currently running in the system by any users. Let's run a process, `sleep <seconds>`, it runs a process that waits for <seconds> number of seconds. Bu default a process runs in the foreground, but we want it to run in the background, so that we can go back to the prompt immediately otherwise the terminal will be occupied the process. 
+
+```bash
+ps 10 &	
+```
+
+Here, `&` means run in the background. As, it's running in the background we can now run `ps` and we will something like:
+
+```bash
+  PID TTY          TIME CMD
+   11 pts/0    00:00:00 bash
+ 1431 pts/0    00:00:00 sleep
+ 1432 pts/0    00:00:00 ps
+```
+
+`PID` stands for ***P**rocess **ID***, by which every process is identified. As we talked earlier, when we need to kill a running process we refer to that process by the **pid**.
+
+```bash
+sleep 100 &
+ps # find the sleep pid
+kill -s SIGKILL <the pid from above>
+ps # notice the process has been killed
+```
+
+Note you'll frequently see `kill -s SIGKILL` as `kill -9`. They mean the same thing. To learn more about it run
+
+```bash
+kill -l	
+```
+
+So, we learned that `ps` returns the process ran by the user and `ps aux` will show what's running in the whole system by  everyone including all system process. Sometimes, the result of `ps aux` is hard to read and find a particular as it's longer. So, we always pair this command with `grep`. For example:
+
+```bash
+ps aux | grep ps
+```
+
+# Foreground and Background
+
+When a process is running the foreground we see the output and it'll have us to wait until it finishes. We make run a process in the background by appending `&` with the command, we will still the process unless we redirect it, but we will able run other command. When we run a process in the background, the bash will still let you know when the process is done. Try, `sleep 2 &` and wait.
+
+We can even move a runnig command process from foreground to background.
+
+```bash
+sleep 100
+# hit CTRL + Z
+jobs # notice process is stopped
+bg 1 # it's the first and only item in the list, the number refers to that
+jobs # notice process is running
+fg 1 # reattach to the process
+```
+
+The Control+Z keys suspend the job, and place it in the background as a stopped job. The bg command runs the job in the background. A job is process is a process that shell manages, each job has a sequential number, you can even pass `-l` flag with `jobs` so get the associate PID. So each job has 3 status: **Froreground**, **Background**, and **Stopped**.
+
+If you need to run a long process then you may apply this technique. But you must know that closing the terminal will kill all process. What if you a have a remote server and you're connected through `ssh` and you don't want to connect and disconnect everytime you close the terminal? This time you can use some utilities like [screen](https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/) and [tmux](https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/). I'm going to talk a bit about how to get on **screen**:
+
+```bash
+screen # create a screen
+screen -S <screen-name> # create a named screen, recommended
+# do something in the screen, like login to your remote server
+Ctrl-a d # detach from a screen, ctrl-a pass the command to screen
+Ctrl-a -r # reattach a screen
+Ctrl-a -r <host.tty> # reattach to a screen with <host.tty> 
+```
+
+
+
+## Difference between jobs and process
+
+Read this: [What is the difference between a job and a process?](https://unix.stackexchange.com/questions/4214/what-is-the-difference-between-a-job-and-a-process)
+
+
+
+
+
+# Exit Codes, Process Operators, and Subcommands
+
+## Exit Codes
+
+Exit codes are meants to indicate if a process successfully completed.
+
+```bash
+date # show current date, runs successfully
+echo $? # $? corresponds to the last exit code, in this case 0
+yes # hit CTRL+C to stop it, it doesn't complete successfully bcz it nevers stops
+echo $? # you stopped it so it exited with a non-zero code, 130
+```
+
+
+
+So what do all the codes mean? Well, it depends on the program and it's not super consistent. It can be any number from 0 to 256. But here are a few good ones that are common
+
+- 0: means it was successful. Anything other than 0 means it failed
+- 1: a good general catch-all "there was an error"
+- 2: a bash internal error, meaning you or the program tried to use bash in an incorrect way
+- 126: Either you don't have permission or the file isn't executable
+- 127: Command not found
+- 128: The exit command itself had a problem, usually that you provided a non-integer exit code to it
+- 130: You ended the program with CTRL+C
+- 137: You ended the program with SIGKILL
+- 255: Out-of-bounds, you tried to exit with a code larger than 255
+
+
+
+## Run if first one succeeds
+
+```bash
+touch status.txt && date >> status.txt && uptime >> status.txt
+cat status.txt
+
+date && cat no-existing.txt && echo succeeds # third one will not run
+```
+
+## Run if first one fails
+
+```bash
+false || echo hi # you'll see hi
+false && echo hi # you won't see hi
+```
+
+## Always Run
+
+```bash
+false ; true ; echo hey # you'll see hey
+```
+
+## Subcommands
+
+`$()` allows us to put bash commands inside of another bash command.
+
+```bash
+echo Hi, $(whoami)!
+```
+
+Let's a more practical one. Let's say you wanted to make a job that you could run every day to output what your current uptime was. You could run this command
+
+```bash
+echo $(date +%x) – $(uptime) >> log.txt
+```
+
+The `+%x` part is just saying what date of format you want.
+
+`` can also be used for subcommands but it's preferred to use $(). [Why?](http://mywiki.wooledge.org/BashFAQ/082)
 
