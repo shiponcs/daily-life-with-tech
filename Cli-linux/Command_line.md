@@ -889,3 +889,76 @@ The `+%x` part is just saying what date of format you want.
 
 `` can also be used for subcommands but it's preferred to use $(). [Why?](http://mywiki.wooledge.org/BashFAQ/082)
 
+# SSH
+
+This is one of the important things you should know as a developer or engineer or CS student. 
+
+If you've a remote server(a vm, literally a linux system) in the cloud and you want to connect to it from your local machine to administreate through CLI, you'll have no other way how to acheive this.
+
+SSH stands for **Secure Shell**. 
+
+Linux man page says:
+
+> ​     ssh (SSH client) is a program for logging into a remote machine and
+> ​     for executing commands on a remote machine.  It is intended to pro‐
+> ​     vide secure encrypted communications between two untrusted hosts over
+> ​     an insecure network.  X11 connections, arbitrary TCP ports and
+> ​     UNIX-domain sockets can also be forwarded over the secure channel.
+
+Go to your terminal (it'll also work on windows power shell) and run:
+
+```bash
+ssh <user-name>@<remote-server-ip>
+```
+
+Then you have t prove your identity, you'll asked for the password for that <user-name>.  The <user-name> must exist in the remote server. But it's cumbersome to type password everytime you need to login to your remte machine. The remedy is SSH keys.
+
+If you don't have a VM in the cloud then cloud, there are many ways to try it on a same machine. For example, create a VM in your local machine, or in case of multipass it's really easy to create a instance of a system,  if you're using wsl then I'll show here how to connect from windows power shell to wsl. In case of multipass follow [this](https://btholt.github.io/complete-intro-to-linux-and-the-cli/ssh#get-a-second-vm-running). In case of wsl, if you want to connect from windows to wsl, open port 22 from WF.msc and check if port 22 is in the `/etc/ssh/sshd_config` in linux.
+
+Assume two terminal open, one we call ***remote-terminal*** (could be a real remote cloud vm terminal, or a linux distro running on your local machine through wsl or VM box), another being ***local-terminal*** (can be your windows power shell, or linux terminal).
+
+## SSH keys
+
+ By ssh keys you can make your machines to recognise others. I'll not explain the mathetical aspect of it, but it's instersting, you should read about it for once at least. When you generate  ssh keys, you key a **pair of keys**, one of which is private that you never release to public, another one is public key that give to others(save in other machines) to recognise you.
+
+Go to ***local-terminal*** and key ssh keys:
+
+```bash
+ssh-keygen -t rsa 
+# if you don't pass rsa as a type it'd still do it by default
+# select the default place, it's ~/.ssh
+# give a passphrase, remember it, you'll be asked for it later
+```
+
+Now, go to `~/.ssh`, you will see two files namely `id_rsa, `(private one), and `id_rsa.pub`(public one as you see the extension). Now copy it (you can do it in multiple ways, like con**cat**enate it in terminal and copy it). 
+
+Now,  go to ***remote-terminal*** and login as he user account which you'll use to login from local machine.
+
+```bash
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+# past the public keys in this file
+chmod 700 ~/.ssh # see the permission section of this note
+chmode 600
+```
+
+Finally, go back to local-terminal and run
+
+```bash
+ssh <user-name>@<ip address of the remote/wsl/machine name>
+```
+
+Great you're done.
+
+Here's something more:
+
+If you're trying with local machine, just write machine name , for my case
+
+```bash
+matin@DESKTOP-77KDFRO
+```
+
+Or, you can find the ip address by using many utilities:
+
+like, `ifconfig`, `ipconfig` (windows). 
+
