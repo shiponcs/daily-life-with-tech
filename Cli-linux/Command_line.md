@@ -1,6 +1,6 @@
+{:toc}
 
 
-[TOC]
 
 
 
@@ -961,4 +961,12 @@ matin@DESKTOP-77KDFRO
 Or, you can find the ip address by using many utilities:
 
 like, `ifconfig`, `ipconfig` (windows). 
+
+
+
+
+
+
+
+
 
