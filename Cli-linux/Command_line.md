@@ -1,3 +1,70 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Linux](#linux)
+    - [Why Linux](#why-linux)
+    - [Ubuntu](#ubuntu)
+    - [How to run Linux](#how-to-run-linux)
+- [Anatomy of CLI command](#anatomy-of-cli-command)
+    - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
+    - [Shells and Emulators](#shells-and-emulators)
+    - [CLI Directories and Arguments](#cli-directories-and-arguments)
+    - [Flags](#flags)
+    - [CLI search](#cli-search)
+    - [Tab Completion](#tab-completion)
+    - [Reverse Bash history](#reverse-bash-history)
+    - [!!](#)
+    - [CLI Shortcuts](#cli-shortcuts)
+- [Signals](#signals)
+- [Editors](#editors)
+  - [nano](#nano)
+  - [vim](#vim)
+- [Interacting with files](#interacting-with-files)
+    - [less; a terminal pager](#less-a-terminal-pager)
+    - [man](#man)
+    - [head / tail](#head--tail)
+    - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
+    - [mkdir](#mkdir)
+    - [rm](#rm)
+    - [cp](#cp)
+    - [mv](#mv)
+    - [tar](#tar)
+- [Wildcards & Replacements](#wildcards--replacements)
+    - [Wildcards](#wildcards)
+    - [Expansion](#expansion)
+- [Streams & Pipes](#streams--pipes)
+  - [Standard Streams](#standard-streams)
+    - [stdout](#stdout)
+      - [1> vs 1>>](#1-vs-1)
+    - [stderr](#stderr)
+    - [/dev/null](#devnull)
+    - [stdin](#stdin)
+    - [Using stdin and stdout](#using-stdin-and-stdout)
+  - [Pipes](#pipes)
+- [Users, Groups, and Permissions](#users-groups-and-permissions)
+  - [Users](#users)
+  - [Superuser](#superuser)
+  - [Sudo](#sudo)
+  - [Groups](#groups)
+  - [chown](#chown)
+  - [chmod](#chmod)
+- [Environment](#environment)
+  - [.bashrc and .bash_profile](#bashrc-and-bash_profile)
+- [Process](#process)
+- [Foreground and Background](#foreground-and-background)
+  - [Difference between jobs and process](#difference-between-jobs-and-process)
+- [Exit Codes, Process Operators, and Subcommands](#exit-codes-process-operators-and-subcommands)
+  - [Exit Codes](#exit-codes)
+  - [Run if first one succeeds](#run-if-first-one-succeeds)
+  - [Run if first one fails](#run-if-first-one-fails)
+  - [Always Run](#always-run)
+  - [Subcommands](#subcommands)
+- [SSH](#ssh)
+  - [SSH keys](#ssh-keys)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 {:toc}
 
 
@@ -960,13 +1027,4 @@ matin@DESKTOP-77KDFRO
 
 Or, you can find the ip address by using many utilities:
 
-like, `ifconfig`, `ipconfig` (windows). 
-
-
-
-
-
-
-
-
-
+like, `ifconfig`, `ipconfig` (windows).
