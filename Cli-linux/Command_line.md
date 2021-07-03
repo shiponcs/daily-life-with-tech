@@ -61,6 +61,76 @@
   - [Always Run](#always-run)
   - [Subcommands](#subcommands)
 - [SSH](#ssh)
+- [Networking things](#networking-things)
+  - [SSH keys](#ssh-keys)
+  - [SFTP](#sftp)
+  - [SCP](#scp)
+  - [WGET](#wget)
+  - [CURL](#curl)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+
+- [Linux](#linux)
+    - [Why Linux](#why-linux)
+    - [Ubuntu](#ubuntu)
+    - [How to run Linux](#how-to-run-linux)
+- [Anatomy of CLI command](#anatomy-of-cli-command)
+    - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
+    - [Shells and Emulators](#shells-and-emulators)
+    - [CLI Directories and Arguments](#cli-directories-and-arguments)
+    - [Flags](#flags)
+    - [CLI search](#cli-search)
+    - [Tab Completion](#tab-completion)
+    - [Reverse Bash history](#reverse-bash-history)
+    - [!!](#)
+    - [CLI Shortcuts](#cli-shortcuts)
+- [Signals](#signals)
+- [Editors](#editors)
+  - [nano](#nano)
+  - [vim](#vim)
+- [Interacting with files](#interacting-with-files)
+    - [less; a terminal pager](#less-a-terminal-pager)
+    - [man](#man)
+    - [head / tail](#head--tail)
+    - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
+    - [mkdir](#mkdir)
+    - [rm](#rm)
+    - [cp](#cp)
+    - [mv](#mv)
+    - [tar](#tar)
+- [Wildcards & Replacements](#wildcards--replacements)
+    - [Wildcards](#wildcards)
+    - [Expansion](#expansion)
+- [Streams & Pipes](#streams--pipes)
+  - [Standard Streams](#standard-streams)
+    - [stdout](#stdout)
+      - [1> vs 1>>](#1-vs-1)
+    - [stderr](#stderr)
+    - [/dev/null](#devnull)
+    - [stdin](#stdin)
+    - [Using stdin and stdout](#using-stdin-and-stdout)
+  - [Pipes](#pipes)
+- [Users, Groups, and Permissions](#users-groups-and-permissions)
+  - [Users](#users)
+  - [Superuser](#superuser)
+  - [Sudo](#sudo)
+  - [Groups](#groups)
+  - [chown](#chown)
+  - [chmod](#chmod)
+- [Environment](#environment)
+  - [.bashrc and .bash_profile](#bashrc-and-bash_profile)
+- [Process](#process)
+- [Foreground and Background](#foreground-and-background)
+  - [Difference between jobs and process](#difference-between-jobs-and-process)
+- [Exit Codes, Process Operators, and Subcommands](#exit-codes-process-operators-and-subcommands)
+  - [Exit Codes](#exit-codes)
+  - [Run if first one succeeds](#run-if-first-one-succeeds)
+  - [Run if first one fails](#run-if-first-one-fails)
+  - [Always Run](#always-run)
+  - [Subcommands](#subcommands)
+- [SSH](#ssh)
   - [SSH keys](#ssh-keys)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -984,6 +1054,10 @@ If you don't have a VM in the cloud then cloud, there are many ways to try it on
 
 Assume two terminal open, one we call ***remote-terminal*** (could be a real remote cloud vm terminal, or a linux distro running on your local machine through wsl or VM box), another being ***local-terminal*** (can be your windows power shell, or linux terminal).
 
+
+
+# Networking things
+
 ## SSH keys
 
  By ssh keys you can make your machines to recognise others. I'll not explain the mathetical aspect of it, but it's instersting, you should read about it for once at least. When you generate  ssh keys, you key a **pair of keys**, one of which is private that you never release to public, another one is public key that give to others(save in other machines) to recognise you.
@@ -1028,3 +1102,76 @@ matin@DESKTOP-77KDFRO
 Or, you can find the ip address by using many utilities:
 
 like, `ifconfig`, `ipconfig` (windows).
+
+
+
+## SFTP
+
+When setup **ssh**, sftp is configured with it because under the hood they both use the same technique. It stands for Secure FTP(File transfer Protocol). FTP is totally another program which is less secure, this tool has been used by the developers to transfer their file to a server for very long time. But you'll use it when you need to move files. But most of the time you will only to copy file from local machine to remote machine, there's another utility for it, **scp**(secure copy) which I'll talk about it in the next section.
+
+Here I assume that you've already the SSH section of my note.
+
+Connect to remote with sftp:
+
+Recall from the previous section:
+
+```bash
+ssh <user-name>@<remote-server-ip>
+```
+
+just replace `ssh` with `sftp`, here you go
+
+```bash
+sftp <user-name>@<remote-server-ip>
+```
+
+Now you will end up in a sftp **interactive shell**, which is different from bash. In this shell you have two context one is you local machine another one is remote machine, whenever you run a command it runs in the context of remote machine, to run a command in the context local machine run, tack the command with an **`l`**, like - `lls`.
+
+```bash
+lls # local machine context
+ls # remote machine context
+```
+
+ Know it, `help` command assists you to know what command is available in this shell.
+
+But you'll need to use two commands to move files- `get` and `put`. But these two are from local machine's perspective, meaning get means you download files from the remote machine to local machine and put means opposite:
+
+```bash
+put file-to-put.txt putted-file.txt # second argument is optional, if you omit it'll just use the same name
+get putted-file.txt gotten-file.txt # same thing, second one is optional
+```
+
+To put or get directories pass `-r` flag.
+
+
+
+## SCP
+
+It stands for **Secure Copy**. 
+
+```bash
+scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file] [-J destination] [-l limit] [-o ssh_option] [-P port] [-S program] source ... target
+```
+
+A basic command for say- I've a file named `dest.tar` in my working directory and I want to copy it my remote server where I've a user account and I want in the home directory the command will look like:
+
+```bash
+scp dest.tar <user-name>@<server-ip>:~/
+```
+
+It'll ask for password if you've set not ssh-keys.
+
+## WGET
+
+It's a network donwloader. Unlike `scp`, we can download(copy) any content from the web, without authentication. 
+
+```bash
+wget https://github.com/shiponcs/daily-life-with-tech
+```
+
+wget can download recursively meaning, it follows the link inside the content. For example,  if you are downloading a HTML file from web that contains some links inside it, wget will download that linked contents and so on.
+
+It has lots  of features to explore it run `wget --help`.
+
+## CURL
+
