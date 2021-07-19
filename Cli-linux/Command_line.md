@@ -3,36 +3,36 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Linux](#linux)
-    - [Why Linux](#why-linux)
-    - [Ubuntu](#ubuntu)
-    - [How to run Linux](#how-to-run-linux)
+  - [Why Linux](#why-linux)
+  - [Ubuntu](#ubuntu)
+  - [How to run Linux](#how-to-run-linux)
 - [Anatomy of CLI command](#anatomy-of-cli-command)
-    - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
-    - [Shells and Emulators](#shells-and-emulators)
-    - [CLI Directories and Arguments](#cli-directories-and-arguments)
-    - [Flags](#flags)
-    - [CLI search](#cli-search)
-    - [Tab Completion](#tab-completion)
-    - [Reverse Bash history](#reverse-bash-history)
-    - [!!](#)
-    - [CLI Shortcuts](#cli-shortcuts)
+  - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
+  - [Shells and Emulators](#shells-and-emulators)
+  - [CLI Directories and Arguments](#cli-directories-and-arguments)
+  - [Flags](#flags)
+  - [CLI search](#cli-search)
+  - [Tab Completion](#tab-completion)
+  - [Reverse Bash history](#reverse-bash-history)
+  - [!!](#)
+  - [CLI Shortcuts](#cli-shortcuts)
 - [Signals](#signals)
 - [Editors](#editors)
   - [nano](#nano)
   - [vim](#vim)
 - [Interacting with files](#interacting-with-files)
-    - [less; a terminal pager](#less-a-terminal-pager)
-    - [man](#man)
-    - [head / tail](#head--tail)
-    - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
-    - [mkdir](#mkdir)
-    - [rm](#rm)
-    - [cp](#cp)
-    - [mv](#mv)
-    - [tar](#tar)
+  - [less; a terminal pager](#less-a-terminal-pager)
+  - [man](#man)
+  - [head / tail](#head--tail)
+  - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
+  - [mkdir](#mkdir)
+  - [rm](#rm)
+  - [cp](#cp)
+  - [mv](#mv)
+  - [tar](#tar)
 - [Wildcards & Replacements](#wildcards--replacements)
-    - [Wildcards](#wildcards)
-    - [Expansion](#expansion)
+  - [Wildcards](#wildcards)
+  - [Expansion](#expansion)
 - [Streams & Pipes](#streams--pipes)
   - [Standard Streams](#standard-streams)
     - [stdout](#stdout)
@@ -73,36 +73,36 @@
 
 
 - [Linux](#linux)
-    - [Why Linux](#why-linux)
-    - [Ubuntu](#ubuntu)
-    - [How to run Linux](#how-to-run-linux)
+  - [Why Linux](#why-linux)
+  - [Ubuntu](#ubuntu)
+  - [How to run Linux](#how-to-run-linux)
 - [Anatomy of CLI command](#anatomy-of-cli-command)
-    - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
-    - [Shells and Emulators](#shells-and-emulators)
-    - [CLI Directories and Arguments](#cli-directories-and-arguments)
-    - [Flags](#flags)
-    - [CLI search](#cli-search)
-    - [Tab Completion](#tab-completion)
-    - [Reverse Bash history](#reverse-bash-history)
-    - [!!](#)
-    - [CLI Shortcuts](#cli-shortcuts)
+  - [How CLI Command or REPL works](#how-cli-command-or-repl-works)
+  - [Shells and Emulators](#shells-and-emulators)
+  - [CLI Directories and Arguments](#cli-directories-and-arguments)
+  - [Flags](#flags)
+  - [CLI search](#cli-search)
+  - [Tab Completion](#tab-completion)
+  - [Reverse Bash history](#reverse-bash-history)
+  - [!!](#)
+  - [CLI Shortcuts](#cli-shortcuts)
 - [Signals](#signals)
 - [Editors](#editors)
   - [nano](#nano)
   - [vim](#vim)
 - [Interacting with files](#interacting-with-files)
-    - [less; a terminal pager](#less-a-terminal-pager)
-    - [man](#man)
-    - [head / tail](#head--tail)
-    - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
-    - [mkdir](#mkdir)
-    - [rm](#rm)
-    - [cp](#cp)
-    - [mv](#mv)
-    - [tar](#tar)
+  - [less; a terminal pager](#less-a-terminal-pager)
+  - [man](#man)
+  - [head / tail](#head--tail)
+  - [Some tricks to keep a file open in terminal to see live update](#some-tricks-to-keep-a-file-open-in-terminal-to-see-live-update)
+  - [mkdir](#mkdir)
+  - [rm](#rm)
+  - [cp](#cp)
+  - [mv](#mv)
+  - [tar](#tar)
 - [Wildcards & Replacements](#wildcards--replacements)
-    - [Wildcards](#wildcards)
-    - [Expansion](#expansion)
+  - [Wildcards](#wildcards)
+  - [Expansion](#expansion)
 - [Streams & Pipes](#streams--pipes)
   - [Standard Streams](#standard-streams)
     - [stdout](#stdout)
@@ -695,9 +695,7 @@ Let's assume you have node process running and you want to kill  it. You may run
 This command will make your job easier by finding just what you need and leaving rest behind:
 
 ```bash
-ps aux | grep node
-# or even self referential
-ps aux | grep aux
+ps aux | grep node# or even self referentialps aux | grep aux
 ```
 
 This way you get the process id easily.
@@ -729,8 +727,7 @@ Who you are? Run `whoami` and it'll say who you're. If you're using Multipass it
 Let's go to `/` directory and try to make a directory there.
 
 ```bash
-mkdir new-dir
-# mkdir: cannot create directory ‘new-dir’: Permission denied
+mkdir new-dir# mkdir: cannot create directory ‘new-dir’: Permission denied
 ```
 
 Because you can't make any change in root (`/`) directory, only supreuser(also called root user) can. As we have stated Linux gives least permission to the users and rootuser has permission to do anything. So you're thinking to change to rootuser to do what you're wanting to do. Right? You can do that, but it's a terible idea and risky to always run as root. You have another way to achieve this- `sudo`.  
@@ -758,8 +755,7 @@ Just like we can add and subtract permissions from a user in Linux, we can actua
 Some groups has special privileges, like the `sudo` group. These users can now `sudo` whenenver they need to. Let's add our user brian to the sudo group. Run `sudo usermod -aG sudo brian` (or `sudo usermod --append --groups sudo brian` if you want the long form) from the ubuntu account. usermod allows you to modify user accounts and `-aG` allows you to append new groups to the user. In this case, we made it so brian is now a sudoer. Try this now.
 
 ```bash
-su brian
-sudo whoami
+su briansudo whoami
 ```
 
 ## chown
@@ -769,15 +765,7 @@ Okay, so let's modify some stuff then. Switch back to being the ubuntu user if y
 Let's make a directory in the root.
 
 ```bash
-whoami # should say ubuntu
-cd /
-mkdir hello # permission denied, you don't have permission to do that here
-sudo mkdir hello # works, but now hello is owned by root:root
-ls -l # notice hello is owned by root:root
-touch hello/text.txt # permission denied, you don't own hello
-sudo chown ubuntu:ubuntu hello # it's <group>:<user>
-ls -l # notice hello is now owned by ubuntu:ubuntu
-touch hello/text.txt # works!
+whoami # should say ubuntucd /mkdir hello # permission denied, you don't have permission to do that heresudo mkdir hello # works, but now hello is owned by root:rootls -l # notice hello is owned by root:roottouch hello/text.txt # permission denied, you don't own hellosudo chown ubuntu:ubuntu hello # it's <group>:<user>ls -l # notice hello is now owned by ubuntu:ubuntutouch hello/text.txt # works!
 ```
 
 This is what chown does! It allows you to reassign ownership (**ch**ange **own**er).
@@ -795,14 +783,7 @@ So chmod allows you to directly change the permissions of the file rather just c
 So let's try a few
 
 ```bash
-whoami # should be ubuntu still
-cd ~ # go to home directory
-sudo touch secret.txt # make a file as root
-ls -l secret.txt # -rw-r--r-- so root can read and write but no one else can
-echo "very secret message" >> secret.txt # doesn't work, permission denied
-sudo chmod u=rw,g=rw,o=rw secret.txt # make it so anyone can read or write to the file
-echo "very secret message" >> secret.txt # works this time!
-cat secret.txt # should see very secret message
+whoami # should be ubuntu stillcd ~ # go to home directorysudo touch secret.txt # make a file as rootls -l secret.txt # -rw-r--r-- so root can read and write but no one else canecho "very secret message" >> secret.txt # doesn't work, permission deniedsudo chmod u=rw,g=rw,o=rw secret.txt # make it so anyone can read or write to the fileecho "very secret message" >> secret.txt # works this time!cat secret.txt # should see very secret message
 ```
 
 So that's the easy-to-remember chmod syntax. Just use u=rwx syntax (omit things you don't want the permission for.) The `u` is for user, `g` is for group, and `o` is for other or everybody else. The `r` is for read, the `w` is for write, and the `x` is for execute.
@@ -858,9 +839,7 @@ In your home directory, there are two files, `.bashrc` and `.bash_profile`. Thes
 `.bash_profile` is only run on login shells. That is to say, it's only run once for each time you log in to your computer. It is *not* run after that. `.bashrc` is run on every nonlogin shell, so it's run on every tab of bash you start up. Typically what you want is to run your customizations on every shell so you actually just want to modify `.bashrc` and leave `.bash_profile` alone. Actually, what I'd suggest you do is go put this in your `.bash_profile`:
 
 ```bash
-if [ -f ~/.bashrc ]; then
-    source ~/.bashrc
-fi
+if [ -f ~/.bashrc ]; then    source ~/.bashrcfi
 ```
 
 That way your `.bashrc` is *always* run. And after you put this in there you can just forget `.bash_profile` exists and always just modify `.bashrc`.
@@ -892,10 +871,7 @@ ps 10 &
 Here, `&` means run in the background. As, it's running in the background we can now run `ps` and we will something like:
 
 ```bash
-  PID TTY          TIME CMD
-   11 pts/0    00:00:00 bash
- 1431 pts/0    00:00:00 sleep
- 1432 pts/0    00:00:00 ps
+  PID TTY          TIME CMD   11 pts/0    00:00:00 bash 1431 pts/0    00:00:00 sleep 1432 pts/0    00:00:00 ps
 ```
 
 `PID` stands for ***P**rocess **ID***, by which every process is identified. As we talked earlier, when we need to kill a running process we refer to that process by the **pid**.
@@ -939,12 +915,7 @@ The Control+Z keys suspend the job, and place it in the background as a stopped 
 If you need to run a long process then you may apply this technique. But you must know that closing the terminal will kill all process. What if you a have a remote server and you're connected through `ssh` and you don't want to connect and disconnect everytime you close the terminal? This time you can use some utilities like [screen](https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/) and [tmux](https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/). I'm going to talk a bit about how to get on **screen**:
 
 ```bash
-screen # create a screen
-screen -S <screen-name> # create a named screen, recommended
-# do something in the screen, like login to your remote server
-Ctrl-a d # detach from a screen, ctrl-a pass the command to screen
-Ctrl-a -r # reattach a screen
-Ctrl-a -r <host.tty> # reattach to a screen with <host.tty> 
+screen # create a screenscreen -S <screen-name> # create a named screen, recommended# do something in the screen, like login to your remote serverCtrl-a d # detach from a screen, ctrl-a pass the command to screenCtrl-a -r # reattach a screenCtrl-a -r <host.tty> # reattach to a screen with <host.tty> 
 ```
 
 
@@ -964,10 +935,7 @@ Read this: [What is the difference between a job and a process?](https://unix.st
 Exit codes are meants to indicate if a process successfully completed.
 
 ```bash
-date # show current date, runs successfully
-echo $? # $? corresponds to the last exit code, in this case 0
-yes # hit CTRL+C to stop it, it doesn't complete successfully bcz it nevers stops
-echo $? # you stopped it so it exited with a non-zero code, 130
+date # show current date, runs successfullyecho $? # $? corresponds to the last exit code, in this case 0yes # hit CTRL+C to stop it, it doesn't complete successfully bcz it nevers stopsecho $? # you stopped it so it exited with a non-zero code, 130
 ```
 
 
@@ -989,10 +957,7 @@ So what do all the codes mean? Well, it depends on the program and it's not supe
 ## Run if first one succeeds
 
 ```bash
-touch status.txt && date >> status.txt && uptime >> status.txt
-cat status.txt
-
-date && cat no-existing.txt && echo succeeds # third one will not run
+touch status.txt && date >> status.txt && uptime >> status.txtcat status.txtdate && cat no-existing.txt && echo succeeds # third one will not run
 ```
 
 ## Run if first one fails
@@ -1174,4 +1139,16 @@ wget can download recursively meaning, it follows the link inside the content. F
 It has lots  of features to explore it run `wget --help`.
 
 ## CURL
+
+In previous section I've said `wget` is somewhat like `cp`/`scp`. But curl operates on input output stream, so you can easily redirect or pip the outcome of curl commands somewhat like cat or other Linux operation. Some basic operations:
+
+```bash
+curl <url> > downloaded.txt  # redirecting the downloaded stream
+curl -o downloaded <url>     # similar to previous one
+curl -O <example.com/example.txt> # similar to previous one but the filename will be example.txt
+```
+
+But one of the most powerful things you can do with curl, if you're a developer, is testing API. I 'd suggest you to read this article to learn more- [CURL](https://btholt.github.io/complete-intro-to-linux-and-the-cli/curl) 
+
+
 
