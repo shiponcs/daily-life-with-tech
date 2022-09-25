@@ -87,3 +87,21 @@ Search with ripgrep in vim
 
 ​	
 
+### Macro
+
+It's such a powerful tool. It replays your keystrokes after recording them. Start recording by typing `q`.
+
+In what cases you may need to use the macros? You get to know it. But here are some examples with macro solution.
+
+Say, you need to create an array of natural number number till 100 or any large number at compile time that's not sane to type one by one. Here is what you can do it with macro.
+
+```c
+int arr[] = {
+    1,
+}
+```
+
+Now you start the recording by `q` and the a letter you wish where it will be save, say `a`; and copy the second line by <sft> v then y and paste it by p and, then <ctrtl> a to increment 1 to 2. And, you stop the recording by typing q once again. So, now you've recorded all the keystrokes to write an array element from immediate previous line and increment it to serve our purposes perfectly. How do you replay the keystroke? Easy. type `@a`(as you've recorded at `a`). It works right? But you need to repeat it 100 times to write hundred elements?  You can simply repeat the replay to any number you want. Type `100@a` to replay the record 100 times. 
+
+
+
