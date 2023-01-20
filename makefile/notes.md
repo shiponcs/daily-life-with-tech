@@ -1,7 +1,7 @@
 
 1. Target: 
-   - (write target basics aren't convered)
-   - first target is always called if no target is mentioned when calling make with no target
+   - (writing target and other basics aren't convered)
+   - first target is always called if no target is mentioned when calling make
  
  3. Variable:
   - Declare a variable: `a := file1 file2`
