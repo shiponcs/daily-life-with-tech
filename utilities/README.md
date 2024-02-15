@@ -6,4 +6,5 @@ This converts nano seconds since unix epoch to date time format.
 ```bash
 $ gcc unixEpochToHMS.c -o  unixEpochToHMS
 $ ./unixEpochToHMS 1707975872158712932
+Thu Feb 15 05:44:32 2024
 ```
