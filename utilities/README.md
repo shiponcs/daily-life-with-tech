@@ -1,4 +1,4 @@
-This directory contains some simple utility programs that may need not to be a seprate repo.
+This directory contains some simple utility programs that may need not to be a separate repo.
 
 ## unixEpochConversion.c
 This converts nano seconds since unix epoch to date time format.
