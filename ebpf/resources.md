@@ -41,13 +41,22 @@
 
    You can find them in GitHub easily or here: https://elixir.bootlin.com/linux/v5.13.1/source/samples/bpf
 ## XDP_Rerdirect
-- https://people.netfilter.org/hawk/presentations/LLC2018/XDP_LLC2018_redirect.pdf
+- https://people.netfilter.org/hawk/presentations/LLC2018/XDP_LLC2018_redirect.pdf (these slides are from LLC - Lund Linux Conf, I could find the videos of those talks, maybe mail them later)
 - 
 ## AF_XDP
-- Slides:(these slides are from LLC - Lund Linux Conf, I could find the videos of those talks, maybe mail them later)
-  - https://drive.google.com/file/d/0BybszUG3ewMxNXdHWGVIRmx3ZEp5LXZGTEVxMTBCVTdmeVgw/view?resourcekey=0-b8IBiX0qtVW9aJ_tUN1a8w
-
+- Slides:
+  - https://drive.google.com/file/d/0BybszUG3ewMxNXdHWGVIRmx3ZEp5LXZGTEVxMTBCVTdmeVgw/view?resourcekey=0-b8IBiX0qtVW9aJ_tUN1a8w ((these slides are from LLC - Lund Linux Conf, I could find the videos of those talks, maybe mail them later))
+   - 
 - RFCs:
   - https://patchwork.ozlabs.org/project/netdev/cover/20180131135356.19134-1-bjorn.topel@gmail.com/ (you can get all rfcs from this, expand the series)
   - 
 - https://lwn.net/Articles/750845/
+  - Look into this comment: https://lwn.net/Articles/751399/
+
+
+
+
+
+
+## Resource articles
+https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/
