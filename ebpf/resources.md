@@ -40,5 +40,13 @@
 1. Example found in the Linux Kernel source tree might be the best place to start with (samples/bpf).
 
    You can find them in GitHub easily or here: https://elixir.bootlin.com/linux/v5.13.1/source/samples/bpf
+## XDP_Rerdirect
+- https://people.netfilter.org/hawk/presentations/LLC2018/XDP_LLC2018_redirect.pdf
+- 
+## AF_XDP
+- Slides:(these slides are from LLC - Lund Linux Conf, I could find the videos of those talks, maybe mail them later)
+  - https://drive.google.com/file/d/0BybszUG3ewMxNXdHWGVIRmx3ZEp5LXZGTEVxMTBCVTdmeVgw/view?resourcekey=0-b8IBiX0qtVW9aJ_tUN1a8w
 
-2. 
+- RFCs:
+  - https://patchwork.ozlabs.org/project/netdev/cover/20180131135356.19134-1-bjorn.topel@gmail.com/ (you can get all rfcs from this, expand the series)
+  - 
