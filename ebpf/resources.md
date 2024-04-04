@@ -53,7 +53,13 @@
 - https://lwn.net/Articles/750845/
   - Look into this comment: https://lwn.net/Articles/751399/
 
-
+- Videos
+  - https://www.youtube.com/watch?v=sBg4Zxla8w4&t=762s
+    - slide: https://slideplayer.com/slide/15437274/
+  - https://www.youtube.com/watch?v=9bbdhnbVbDk&t=930s
+  - https://www.youtube.com/watch?v=p61PlC9y62k
+    - https://elinux.org/images/9/96/Elce-af_xdp-topel-v3.pdf
+  - 
 
 
 
