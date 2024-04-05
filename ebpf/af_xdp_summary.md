@@ -1,5 +1,5 @@
 - XDP in AF_XDP: Using XDP redirect mechanism, we can redirect frames to af_socker like redirecting to other net devices. AF_XDP is another target for redirect.
--  
+-  In typical INET sockets, each send/recv is a syscall and syscall is expensive. 
 Steps:
 1. Call `socket()` with formats/address family `AF_XDP`
 2. Create Buffer
