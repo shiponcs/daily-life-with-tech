@@ -7,3 +7,6 @@
    we exensibly use OSS L4/L7 filters like PostgresPorxy, MySQLProxy, KafkaProxy, MongoProxy, RedisProxy, and HCM. To meet our purposes we even do modification to those existing filters. In fact,
    we build an Database Audit tool based on those filters.
 5. **Performance**: It provides High throughput, low latency, comsuming little CPU, and RAM
+
+Other proxies:
+ Linkerd, NGINX, HAProxy, Traefik
