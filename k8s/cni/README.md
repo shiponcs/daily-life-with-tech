@@ -13,12 +13,18 @@
      2. Set of reference plugins (https://github.com/containernetworking/plugins)
   3. Configuration format:
   4. Execution Flow:
-     
+      
      1. Basic Commands: `ADD`, `DEL`, `CHECK`, and `VERSION`
      2. Plugins are executables
      3. The runtime (kubelet in case of k8s) executes the CNI plugins as seperate programs and
      4. feeds json data and some container specific data and the plugin program gives back the response in json format.
-     
+- Deep Dive: CNI: https://www.youtube.com/watch?v=zChkx-AB5Xc
+  Learning:
+  Recap: the CNI is just the glue—it adds a container to an existing network.
+  1. A story about `CHECK`
+     A verb like `ADD`, `DEL`, `VERSION`. These four verbs form the basic operation of CNI.
+     CHECK is like asking the plugin: "Is the network of the container healthy?".
+           
      
      
   
