@@ -24,6 +24,7 @@
   1. A story about `CHECK`
      A verb like `ADD`, `DEL`, `VERSION`. These four verbs form the basic operation of CNI.
      CHECK is like asking the plugin: "Is the network of the container healthy?".
+  2. From Q&A: https://github.com/k8snetworkplumbingwg/community
            
      
      
